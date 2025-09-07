@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,13 +14,50 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
   const contactRef = useRef(null);
+  const formRef = useRef(null);
 
-  // EmailJS simulation (replace with actual EmailJS implementation)
+  // Initialize EmailJS with your public key
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
+
   const sendEmail = async (formData) => {
-    console.log('Sending email with data:', formData);
-    return new Promise((resolve) => {
-      setTimeout(() => resolve({ success: true }), 1500);
-    });
+    try {
+      const templateParams = {
+        to_name: 'Fashion Italian Team', // or import.meta.env?.VITE_TO_NAME || process.env?.REACT_APP_TO_NAME
+        fullname: formData.name,
+        companyName: formData.company,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message,
+        // Additional fields that might be useful
+        from_name: formData.name,
+        reply_to: formData.email,
+      };
+
+      const serviceId = import.meta.env?.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env?.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env?.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error(
+          'EmailJS configuration is missing. Please check your environment variables.'
+        );
+      }
+
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      console.log('Email sent successfully:', result);
+      return { success: true };
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      throw error;
+    }
   };
 
   useEffect(() => {
@@ -48,15 +86,23 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('');
+
     try {
       await sendEmail(formData);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+
+      // Reset form using ref
+      if (formRef.current) {
+        formRef.current.reset();
+      }
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus(''), 3000);
+      setTimeout(() => setSubmitStatus(''), 5000);
     }
   };
 
@@ -185,7 +231,7 @@ const Contact = () => {
             <h3 className="text-2xl font-bold mb-6 text-blue-400">
               Send us a Message
             </h3>
-            <div className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-2">
@@ -259,7 +305,7 @@ const Contact = () => {
                 ></textarea>
               </div>
               <button
-                onClick={handleSubmit}
+                type="submit"
                 disabled={
                   isSubmitting ||
                   !formData.name ||
@@ -287,10 +333,11 @@ const Contact = () => {
               )}
               {submitStatus === 'error' && (
                 <div className="text-red-400 text-center p-4 bg-red-900/20 rounded-lg border border-red-500/20 animate-fade-in">
-                  ❌ Error sending message. Please try again.
+                  ❌ Error sending message. Please try again or contact us
+                  directly.
                 </div>
               )}
-            </div>
+            </form>
           </div>
         </div>
       </div>
