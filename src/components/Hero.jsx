@@ -76,9 +76,9 @@ const Hero = () => {
         ref={heroRef}
         className="container mx-auto px-4 text-center relative z-10"
       >
-        <h1 className="text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent drop-shadow-2xl">
+        {/* <h1 className="text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent drop-shadow-2xl">
           Fashion Italian Style
-        </h1>
+        </h1> */}
         <p className="text-2xl md:text-3xl mb-6 text-white drop-shadow-lg font-light">
           Premium Clothing Supply & Fashion Solutions
         </p>

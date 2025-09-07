@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,13 +46,14 @@ const Navigation = () => {
         }`}
       >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div
+          {/* <div
             className={`text-2xl font-bold transition-colors duration-300 ${
               isScrolled ? 'text-blue-400' : 'text-white drop-shadow-lg'
             }`}
           >
             Fashion Italian Style
-          </div>
+          </div> */}
+          <img src={logo} alt="logo" className="size-24" />
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
