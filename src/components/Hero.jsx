@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import brand1 from '../assets/brands/aprium.png';
-import brand2 from '../assets/brands/cavalli.png';
-import brand3 from '../assets/brands/avx.png';
-import brand4 from '../assets/brands/grand.png';
-import brand5 from '../assets/brands/replay.png';
-import brand6 from '../assets/brands/karl.png';
-import brand7 from '../assets/brands/iceberg.png';
-import brand8 from '../assets/brands/cerruti.png';
-import brand9 from '../assets/brands/guadi.png';
-import brand10 from '../assets/brands/bikkemergs.png';
+import React, { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import brand1 from "../assets/brands/aprium.png";
+import brand2 from "../assets/brands/cavalli.png";
+import brand3 from "../assets/brands/avx.png";
+import brand4 from "../assets/brands/grand.png";
+import brand5 from "../assets/brands/replay.png";
+import brand6 from "../assets/brands/karl.png";
+import brand7 from "../assets/brands/iceberg.png";
+import brand8 from "../assets/brands/cerruti.png";
+import brand9 from "../assets/brands/guadi.png";
+import brand10 from "../assets/brands/bikkemergs.png";
 
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -17,26 +17,26 @@ const Hero = () => {
   const heroRef = useRef(null);
 
   const brandPartners = [
-    { image: brand1, alt: 'Aprium' },
-    { image: brand2, alt: 'Cavalli' },
-    { image: brand3, alt: 'AVX' },
-    { image: brand4, alt: 'Grand' },
-    { image: brand5, alt: 'Replay' },
-    { image: brand6, alt: 'Karl' },
-    { image: brand7, alt: 'Iceberg' },
-    { image: brand8, alt: 'Cerruti' },
-    { image: brand9, alt: 'Guadi' },
-    { image: brand10, alt: 'Bikkemergs' },
+    { image: brand1, alt: "Aprium" },
+    { image: brand2, alt: "Cavalli" },
+    { image: brand3, alt: "AVX" },
+    { image: brand4, alt: "Grand" },
+    { image: brand5, alt: "Replay" },
+    { image: brand6, alt: "Karl" },
+    { image: brand7, alt: "Iceberg" },
+    { image: brand8, alt: "Cerruti" },
+    { image: brand9, alt: "Guadi" },
+    { image: brand10, alt: "Bikkemergs" },
   ];
 
   // Hero background images
   const heroImages = [
-    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1920&h=1080&fit=crop&crop=center&q=80',
-    'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1920&h=1080&fit=crop&crop=center&q=80',
-    'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920&h=1080&fit=crop&crop=center&q=80',
-    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&h=1080&fit=crop&crop=center&q=80',
-    'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=1920&h=1080&fit=crop&crop=center&q=80',
-    'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=1920&h=1080&fit=crop&crop=center&q=80',
+    "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1920&h=1080&fit=crop&crop=center&q=80",
+    "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1920&h=1080&fit=crop&crop=center&q=80",
+    "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920&h=1080&fit=crop&crop=center&q=80",
+    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&h=1080&fit=crop&crop=center&q=80",
+    "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=1920&h=1080&fit=crop&crop=center&q=80",
+    "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=1920&h=1080&fit=crop&crop=center&q=80",
   ];
 
   useEffect(() => {
@@ -50,13 +50,16 @@ const Hero = () => {
       const heroElements = heroRef.current?.children;
       if (heroElements) {
         Array.from(heroElements).forEach((el, index) => {
-          el.style.transform = 'translateY(50px)';
-          el.style.opacity = '0';
-          setTimeout(() => {
-            el.style.transition = 'all 0.8s ease-out';
-            el.style.transform = 'translateY(0)';
-            el.style.opacity = '1';
-          }, index * 200 + 1000);
+          el.style.transform = "translateY(50px)";
+          el.style.opacity = "0";
+          setTimeout(
+            () => {
+              el.style.transition = "all 0.8s ease-out";
+              el.style.transform = "translateY(0)";
+              el.style.opacity = "1";
+            },
+            index * 200 + 1000,
+          );
         });
       }
     };
@@ -82,13 +85,13 @@ const Hero = () => {
           <div
             key={index}
             className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-2000 ${
-              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              index === currentImageIndex ? "opacity-100" : "opacity-0"
             }`}
             style={{
               backgroundImage: `url(${image})`,
               transform:
-                index === currentImageIndex ? 'scale(1.05)' : 'scale(1)',
-              transition: 'opacity 2s ease-in-out, transform 20s ease-in-out',
+                index === currentImageIndex ? "scale(1.05)" : "scale(1)",
+              transition: "opacity 2s ease-in-out, transform 20s ease-in-out",
             }}
           />
         ))}
@@ -136,8 +139,8 @@ const Hero = () => {
                 onClick={() => setCurrentImageIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-500 ${
                   index === currentImageIndex
-                    ? 'bg-white scale-125 shadow-lg shadow-white/50'
-                    : 'bg-white/40 hover:bg-white/70 hover:scale-110'
+                    ? "bg-white scale-125 shadow-lg shadow-white/50"
+                    : "bg-white/40 hover:bg-white/70 hover:scale-110"
                 }`}
               />
             ))}
@@ -156,7 +159,7 @@ const Hero = () => {
 
         {/* Brand Carousel */}
         <div className="relative overflow-hidden w-[90%] md:w-[80%] mx-auto">
-          <div className="flex overflow-hidden">
+          {/* <div className="flex overflow-hidden">
             <div className="flex animate-scroll space-x-6 hover:pause-animation">
               {duplicatedBrands.map((brand, index) => (
                 <div
@@ -178,11 +181,11 @@ const Hero = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Gradient Overlays for smooth edges */}
-          <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-slate-900/80 via-slate-900/40 to-transparent pointer-events-none"></div>
-          <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-slate-900/80 via-slate-900/40 to-transparent pointer-events-none"></div>
+          {/* <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-slate-900/80 via-slate-900/40 to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-slate-900/80 via-slate-900/40 to-transparent pointer-events-none"></div> */}
         </div>
       </div>
 
@@ -200,11 +203,11 @@ const Hero = () => {
       <div className="absolute top-1/4 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
       <div
         className="absolute bottom-1/4 right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl animate-pulse"
-        style={{ animationDelay: '2s' }}
+        style={{ animationDelay: "2s" }}
       ></div>
       <div
         className="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-400/10 rounded-full blur-lg animate-pulse"
-        style={{ animationDelay: '1s' }}
+        style={{ animationDelay: "1s" }}
       ></div>
 
       {/* Custom Styles for Carousel Animation */}
